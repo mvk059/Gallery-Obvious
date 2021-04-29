@@ -1,19 +1,21 @@
 package com.mvk.galleryobvious.ui.main
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.content.Context
+import android.widget.ImageView
+import androidx.lifecycle.ViewModel
 import com.mvk.galleryobvious.data.datasource.ImageDataSource
 import com.mvk.galleryobvious.data.model.Image
+import com.mvk.galleryobvious.data.repository.NetworkRepository
 
-class SharedViewModel(var app: Application) : AndroidViewModel(app) {
+class SharedViewModel() : ViewModel() {
 
     /**
      * Gets the data from the data source
      *
      * @return Array of images
      */
-    fun getData(): Array<Image>? {
-        val dataSource = ImageDataSource(app)
+    fun getData(context: Context): Array<Image>? {
+        val dataSource = ImageDataSource(context)
         return dataSource.getImageData()
     }
 }

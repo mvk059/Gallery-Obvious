@@ -2,13 +2,12 @@ package com.mvk.galleryobvious.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.mvk.galleryobvious.R
+import com.mvk.galleryobvious.ImageApp
 import com.mvk.galleryobvious.data.model.Image
 import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.databinding.ItemViewHomeMainBinding
-import com.mvk.galleryobvious.utils.common.ImageClickListener
+import com.mvk.galleryobvious.ui.main.utils.ImageClickListener
 
 class MainGalleryAdapter(
     var imageList: Array<Image>?,
@@ -34,12 +33,20 @@ class MainGalleryAdapter(
     inner class MainGalleryItemViewHolder(var binding: ItemViewHomeMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItems(images: Array<Image>, imageClickListener: ImageClickListener, position: Int) {
-            binding.rvItemHomeMain.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.hubble))
-
+        fun bindItems(
+            images: Array<Image>,
+            imageClickListener: ImageClickListener,
+            position: Int
+        ) {
             binding.rvItemHomeMain.setOnClickListener {
-                this@MainGalleryAdapter.imageClickListener.onClick(ImageData(images, position))
+                imageClickListener.onClick(ImageData(images, position))
             }
+
+//            loadImageListener.loadImages(images[position].url, binding.rvItemHomeMain)
+
+            val appContext = (binding.rvItemHomeMain.context).applicationContext as ImageApp
+            appContext.getGlideService(images[position].url, binding.rvItemHomeMain)
+
         }
     }
 }

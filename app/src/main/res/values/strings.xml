@@ -2,4 +2,5 @@
     <string name="app_name">Gallery Obvious</string>
     <string name="error_text_file_not_found">File not found</string>
     <string name="home_cont_desc_rv_icon">Icon in main gallery screen</string>
+    <string name="home_error_image_loading">Failed to load image. Please retry</string>
 </resources>

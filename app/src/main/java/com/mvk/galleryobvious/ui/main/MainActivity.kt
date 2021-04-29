@@ -11,7 +11,7 @@ import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.databinding.ActivityMainBinding
 import com.mvk.galleryobvious.ui.main.adapter.MainGalleryAdapter
 import com.mvk.galleryobvious.utils.common.Constants
-import com.mvk.galleryobvious.utils.common.ImageClickListener
+import com.mvk.galleryobvious.ui.main.utils.ImageClickListener
 
 class MainActivity : AppCompatActivity(), ImageClickListener {
     /**
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
      * Setting up the adapter to list the images
      */
     private fun setAdapter() {
-        val array = viewModel.getData()
+        val array = viewModel.getData(this)
         val galleryAdapter = MainGalleryAdapter(
             imageList = array,
             imageClickListener = this

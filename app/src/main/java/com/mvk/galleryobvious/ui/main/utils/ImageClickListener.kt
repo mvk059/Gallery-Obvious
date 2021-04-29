@@ -1,4 +1,4 @@
-package com.mvk.galleryobvious.utils.common
+package com.mvk.galleryobvious.ui.main.utils
 
 import com.mvk.galleryobvious.data.model.ImageData
 
