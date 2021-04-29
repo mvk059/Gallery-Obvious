@@ -6,10 +6,14 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mvk.galleryobvious.R
 import com.mvk.galleryobvious.data.model.Image
+import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.databinding.ItemViewHomeMainBinding
+import com.mvk.galleryobvious.utils.common.ImageClickListener
 
-class MainGalleryAdapter(var imageList: Array<Image>?) :
-    RecyclerView.Adapter<MainGalleryAdapter.MainGalleryItemViewHolder>() {
+class MainGalleryAdapter(
+    var imageList: Array<Image>?,
+    var imageClickListener: ImageClickListener
+) : RecyclerView.Adapter<MainGalleryAdapter.MainGalleryItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainGalleryItemViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,7 +24,7 @@ class MainGalleryAdapter(var imageList: Array<Image>?) :
     override fun onBindViewHolder(holder: MainGalleryItemViewHolder, position: Int) {
         imageList?.let {
             if (it.isNotEmpty()) {
-                holder.bindItems(it)
+                holder.bindItems(it, imageClickListener, position)
             }
         }
     }
@@ -30,8 +34,12 @@ class MainGalleryAdapter(var imageList: Array<Image>?) :
     inner class MainGalleryItemViewHolder(var binding: ItemViewHomeMainBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItems(arrayOfImages: Array<Image>) {
+        fun bindItems(images: Array<Image>, imageClickListener: ImageClickListener, position: Int) {
             binding.rvItemHomeMain.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.hubble))
+
+            binding.rvItemHomeMain.setOnClickListener {
+                this@MainGalleryAdapter.imageClickListener.onClick(ImageData(images, position))
+            }
         }
     }
 }
