@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -12,7 +13,9 @@ import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.databinding.DetailViewMainBinding
 import com.mvk.galleryobvious.ui.detail.adapter.DetailViewAdapter
 import com.mvk.galleryobvious.ui.detail.utils.FullScreenClickListener
+import com.mvk.galleryobvious.ui.fullscreen.FullScreenFragment
 import com.mvk.galleryobvious.ui.main.SharedViewModel
+import com.mvk.galleryobvious.utils.common.replaceFragment
 
 class DetailViewFragment : Fragment(), FullScreenClickListener {
 
@@ -36,11 +39,15 @@ class DetailViewFragment : Fragment(), FullScreenClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         initAdapter(viewModel.imageData)
     }
 
-    override fun onClick(viewPagerPosition: Int) {
+    override fun onClick(viewPagerPosition: Int, fullScreenIV: ImageView) {
+        replaceFragment(
+            fragment = FullScreenFragment(),
+            container = android.R.id.content
+        )
+        viewModel.saveViewPagerPosition(viewPagerPosition)
     }
 
     /**
@@ -48,11 +55,7 @@ class DetailViewFragment : Fragment(), FullScreenClickListener {
      * Navigating to the position of the selected image
      */
     private fun initAdapter(it: ImageData) {
-        binding.detailViewPager.adapter = DetailViewAdapter(
-            it,
-            this
-        )
+        binding.detailViewPager.adapter = DetailViewAdapter(it, this)
         binding.detailViewPager.setCurrentItem(it.position, false)
-
     }
 }

@@ -34,7 +34,10 @@ class DetailViewAdapter(
             fullScreenClickListener: FullScreenClickListener
         ) {
             val appContext = (binding.detailFullScreenIV.context).applicationContext as ImageApp
-            appContext.getGlideService(imageData.image[viewPagerPosition].url, binding.detailMainIV)
+            appContext.getGlideService(
+                url = imageData.image[viewPagerPosition].url,
+                targetIV = binding.detailMainIV, binding.detailFullScreenIV
+            )
 
             binding.detailTitleTV.text = imageData.image[viewPagerPosition].title
             val copyright = String.format(
@@ -46,7 +49,7 @@ class DetailViewAdapter(
             binding.detailDateTV.text = imageData.image[viewPagerPosition].date
 
             binding.detailFullScreenIV.setOnClickListener {
-                fullScreenClickListener.onClick(viewPagerPosition)
+                fullScreenClickListener.onClick(viewPagerPosition, binding.detailFullScreenIV)
             }
         }
     }

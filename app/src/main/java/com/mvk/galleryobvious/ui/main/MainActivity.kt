@@ -2,10 +2,8 @@ package com.mvk.galleryobvious.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mvk.galleryobvious.R
 import com.mvk.galleryobvious.data.model.ImageData
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
             fragment = DetailViewFragment(),
             container = android.R.id.content
         )
-        viewModel.passDataToDetailFragment(imageData = imageData)
+        viewModel.saveImageData(imageData = imageData)
     }
 
     /**

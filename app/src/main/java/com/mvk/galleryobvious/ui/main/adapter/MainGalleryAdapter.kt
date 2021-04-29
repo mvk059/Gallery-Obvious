@@ -45,7 +45,7 @@ class MainGalleryAdapter(
 //            loadImageListener.loadImages(images[position].url, binding.rvItemHomeMain)
 
             val appContext = (binding.rvItemHomeMain.context).applicationContext as ImageApp
-            appContext.getGlideService(images[position].url, binding.rvItemHomeMain)
+            appContext.getGlideService(url = images[position].url, targetIV = binding.rvItemHomeMain)
 
         }
     }

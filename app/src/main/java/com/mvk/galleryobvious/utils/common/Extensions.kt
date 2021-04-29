@@ -1,8 +1,3 @@
-/*
- * Created by Manpreet Kunnath on 29/1/2020 10:16
- * Copyright (c) 2020 . All rights reserved.
- */
-
 package com.mvk.galleryobvious.utils.common
 
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +18,15 @@ fun InputStream.readInput(charset: Charset = Charsets.UTF_8): String {
 }
 
 /**
+ * Transacts to the fragment specified
+ *
+ * @param func Lambda
+ */
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
+    beginTransaction().func().commit()
+}
+
+/**
  * Calls the inTransaction method and loads the fragment. Called from an Activity
  *
  * @param fragment Fragment to be added
@@ -33,10 +37,11 @@ fun AppCompatActivity.addFragment(fragment: Fragment, container: Int){
 }
 
 /**
- * Transacts to the fragment specified
+ * Calls the inTransaction method and loads the fragment. Called from an Fragment
  *
- * @param func Lambda
+ * @param fragment Fragment to be added
+ * @param container Place to be added
  */
-inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> FragmentTransaction) {
-    beginTransaction().func().commit()
+fun Fragment.replaceFragment(fragment: Fragment, container: Int){
+    parentFragmentManager.inTransaction { addToBackStack(null).replace(container, fragment) }
 }

@@ -1,25 +1,31 @@
 package com.mvk.galleryobvious.data.remote
 
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mvk.galleryobvious.R
 import com.mvk.galleryobvious.ui.main.utils.LoadImagesService
+import com.mvk.galleryobvious.utils.common.Constants
 
 object LoadImagesServiceImpl : LoadImagesService {
 
-    override fun loadImages(url: String, targetIV: ImageView, sourceType: Int) {
+    override fun loadImages(url: String, targetIV: ImageView, fullScreenIV: ImageView?, source: Int) {
+        val crop =
+            if (source == Constants.SOURCE_FULL_SCREEN ) FitCenter()
+            else CenterCrop()
         Glide.with(targetIV.context)
             .load(url)
-            .transform(CenterCrop())
-//            .placeholder(placeholderImage)
-//            .error(errorImage)
+            .transform(crop)
+            .placeholder(R.drawable.ic_placeholder)
+            .error(R.drawable.ic_error)
             .listener(object : RequestListener<Drawable> {
                 // If image loading fails show the error
                 override fun onLoadFailed(
@@ -41,6 +47,9 @@ object LoadImagesServiceImpl : LoadImagesService {
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
+                    fullScreenIV?.let {
+                        it.visibility = View.VISIBLE
+                    }
                     return false
                 }
 

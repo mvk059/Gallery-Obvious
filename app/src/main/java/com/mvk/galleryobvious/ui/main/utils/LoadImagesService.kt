@@ -4,5 +4,5 @@ import android.widget.ImageView
 
 interface LoadImagesService {
 
-    fun loadImages(url: String, targetIV: ImageView, sourceType: Int)
+    fun loadImages(url: String, targetIV: ImageView, fullScreenIV: ImageView?, source: Int)
 }
