@@ -2,10 +2,10 @@ package com.mvk.galleryobvious
 
 import android.app.Application
 import android.widget.ImageView
-import com.mvk.galleryobvious.data.remote.LoadImagesListenerImpl
+import com.mvk.galleryobvious.data.remote.LoadImagesServiceImpl
 
 class ImageApp : Application() {
 
     fun getGlideService(url: String, targetIV: ImageView) =
-        LoadImagesListenerImpl.loadImages(url, targetIV)
+        LoadImagesServiceImpl.loadImages(url, targetIV)
 }

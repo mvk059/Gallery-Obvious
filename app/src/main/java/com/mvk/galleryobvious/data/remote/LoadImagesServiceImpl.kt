@@ -10,9 +10,9 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mvk.galleryobvious.R
-import com.mvk.galleryobvious.ui.main.utils.LoadImagesListener
+import com.mvk.galleryobvious.ui.main.utils.LoadImagesService
 
-object LoadImagesListenerImpl : LoadImagesListener {
+object LoadImagesServiceImpl : LoadImagesService {
 
     override fun loadImages(url: String, targetIV: ImageView) {
         Glide.with(targetIV.context)
