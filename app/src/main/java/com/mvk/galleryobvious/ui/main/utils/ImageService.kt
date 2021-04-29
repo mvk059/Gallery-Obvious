@@ -5,7 +5,7 @@ import android.widget.ImageView
 /**
  * Interface to handle loading of images via Glide
  */
-interface LoadImagesService {
+interface ImageService {
 
     /**
      * Load images via Glide
@@ -15,5 +15,5 @@ interface LoadImagesService {
      * @param fullScreenIV Full screen image view reference to be enabled when image has been downloaded
      * @param source App screen ID
      */
-    fun loadImages(url: String, targetIV: ImageView, fullScreenIV: ImageView?, source: Int)
+    fun loadImages(url: String, targetIV: ImageView, fullScreenIV: ImageView? = null, source: Int = 0)
 }

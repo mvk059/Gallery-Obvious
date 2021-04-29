@@ -3,7 +3,6 @@ package com.mvk.galleryobvious.data.remote
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -12,13 +11,13 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.mvk.galleryobvious.R
-import com.mvk.galleryobvious.ui.main.utils.LoadImagesService
+import com.mvk.galleryobvious.ui.main.utils.ImageService
 import com.mvk.galleryobvious.utils.common.Constants
 
 /**
- * Implements [LoadImagesService] and uses Glide library to load requested images.
+ * Implements [ImageService] and uses Glide library to load requested images.
  */
-object LoadImagesServiceImpl : LoadImagesService {
+object ImageServiceImpl : ImageService {
 
     /**
      * Load images from Glide
@@ -47,9 +46,6 @@ object LoadImagesServiceImpl : LoadImagesService {
                             target: Target<Drawable>?,
                             isFirstResource: Boolean
                     ): Boolean {
-                        // Error message when image loading fails
-                        val errorMessage = targetIV.context.getString(R.string.home_error_image_loading)
-                        Toast.makeText(targetIV.context, errorMessage, Toast.LENGTH_LONG).show()
                         return false
                     }
 

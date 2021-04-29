@@ -14,7 +14,7 @@ import java.io.IOException
  *
  * @param context Context
  */
-class ImageDataSource(var context: Context) {
+class ImageDataSource(private var context: Context) {
 
     /**
      * Fetches the JSON file from the assets directory and maps it to the model

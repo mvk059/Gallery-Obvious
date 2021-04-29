@@ -10,7 +10,7 @@ import com.mvk.galleryobvious.data.model.ImageData
  * Shared View Model for [com.mvk.galleryobvious.ui.main.MainActivity] and
  * [com.mvk.galleryobvious.ui.detail.DetailViewFragment]
  */
-class SharedViewModel() : ViewModel() {
+class SharedViewModel : ViewModel() {
     /**
      * Position of the view pager of the detail screen
      */

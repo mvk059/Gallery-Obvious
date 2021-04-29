@@ -56,9 +56,8 @@ class MainGalleryAdapter(
                 imageClickListener: ImageClickListener,
                 position: Int
         ) {
-            // Call Glide service
-            val appContext = (binding.rvItemHomeMain.context).applicationContext as ImageApp
-            appContext.getGlideService(url = images[position].url, targetIV = binding.rvItemHomeMain)
+            // Call image service
+            ImageApp.imageService.loadImages(url = images[position].url, targetIV = binding.rvItemHomeMain)
 
             // Set click listener
             binding.rvItemHomeMain.setOnClickListener {

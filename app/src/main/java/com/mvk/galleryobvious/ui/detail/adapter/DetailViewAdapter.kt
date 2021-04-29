@@ -16,8 +16,8 @@ import com.mvk.galleryobvious.ui.detail.utils.FullScreenClickListener
  * @param fullScreenClickListener Listener to handle full screen button click
  */
 class DetailViewAdapter(
-        var imageData: ImageData,
-        var fullScreenClickListener: FullScreenClickListener
+        private var imageData: ImageData,
+        private var fullScreenClickListener: FullScreenClickListener
 ) : RecyclerView.Adapter<DetailViewAdapter.DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
@@ -51,10 +51,8 @@ class DetailViewAdapter(
                 viewPagerPosition: Int,
                 fullScreenClickListener: FullScreenClickListener
         ) {
-            // Get application context
-            val appContext = (binding.detailFullScreenIV.context).applicationContext as ImageApp
             // Call Glide service
-            appContext.getGlideService(
+            ImageApp.imageService.loadImages(
                     url = imageData.image[viewPagerPosition].url,
                     targetIV = binding.detailMainIV, binding.detailFullScreenIV
             )
