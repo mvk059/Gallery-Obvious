@@ -1,11 +1,14 @@
 package com.mvk.galleryobvious.ui.detail.utils
 
-import android.widget.ImageView
-
 /**
  * Interface to handle navigation to full screen
  */
 interface FullScreenClickListener {
 
-    fun onClick(viewPagerPosition: Int, fullScreenIV: ImageView)
+    /**
+     * Handles full screen button click
+     *
+     * @param viewPagerPosition View pager position of the full screen image
+     */
+    fun onClick(viewPagerPosition: Int)
 }

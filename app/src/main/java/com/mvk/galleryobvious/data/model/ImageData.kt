@@ -3,7 +3,10 @@ package com.mvk.galleryobvious.data.model
 import java.io.Serializable
 
 /**
- * Model for that holds the list of NASA images
+ * Model for that holds the list of NASA images with current image position
+ *
+ * @param image List of images
+ * @param position Current image position
  */
 data class ImageData(var image: Array<Image>, var position: Int) : Serializable {
 

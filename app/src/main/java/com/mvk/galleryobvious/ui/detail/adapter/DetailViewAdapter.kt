@@ -9,9 +9,15 @@ import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.databinding.ItemViewDetailBinding
 import com.mvk.galleryobvious.ui.detail.utils.FullScreenClickListener
 
+/**
+ * Recycler view adapter for the detail screen.
+ *
+ * @param imageData List of images
+ * @param fullScreenClickListener Listener to handle full screen button click
+ */
 class DetailViewAdapter(
-    var imageData: ImageData,
-    var fullScreenClickListener: FullScreenClickListener
+        var imageData: ImageData,
+        var fullScreenClickListener: FullScreenClickListener
 ) : RecyclerView.Adapter<DetailViewAdapter.DetailViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
@@ -26,30 +32,46 @@ class DetailViewAdapter(
 
     override fun getItemCount(): Int = imageData.image.size
 
+    /**
+     * View holder to display the images
+     *
+     * @param binding Binding with the layout file (detail_view_item.xml) to access it's elements
+     */
     inner class DetailViewHolder(var binding: ItemViewDetailBinding) : RecyclerView.ViewHolder(binding.root) {
 
+        /**
+         * Sets all the required information in their respective fields
+         *
+         * @param imageData List of images
+         * @param viewPagerPosition Position of the current item in the view pager
+         * @param fullScreenClickListener Listener to handle full screen button click
+         */
         fun bindItems(
-            imageData: ImageData,
-            viewPagerPosition: Int,
-            fullScreenClickListener: FullScreenClickListener
+                imageData: ImageData,
+                viewPagerPosition: Int,
+                fullScreenClickListener: FullScreenClickListener
         ) {
+            // Get application context
             val appContext = (binding.detailFullScreenIV.context).applicationContext as ImageApp
+            // Call Glide service
             appContext.getGlideService(
-                url = imageData.image[viewPagerPosition].url,
-                targetIV = binding.detailMainIV, binding.detailFullScreenIV
+                    url = imageData.image[viewPagerPosition].url,
+                    targetIV = binding.detailMainIV, binding.detailFullScreenIV
             )
 
-            binding.detailTitleTV.text = imageData.image[viewPagerPosition].title
+            // Set data in the screen
             val copyright = String.format(
-                binding.detailCopyrightTV.context.resources.getString(R.string.detail_text_copyright),
-                imageData.image[viewPagerPosition].copyright
+                    binding.detailCopyrightTV.context.resources.getString(R.string.detail_text_copyright),
+                    imageData.image[viewPagerPosition].copyright
             )
             binding.detailCopyrightTV.text = copyright
+            binding.detailTitleTV.text = imageData.image[viewPagerPosition].title
             binding.detailExplanationTV.text = imageData.image[viewPagerPosition].explanation
             binding.detailDateTV.text = imageData.image[viewPagerPosition].date
 
+            // Click listener for full screen button
             binding.detailFullScreenIV.setOnClickListener {
-                fullScreenClickListener.onClick(viewPagerPosition, binding.detailFullScreenIV)
+                fullScreenClickListener.onClick(viewPagerPosition)
             }
         }
     }

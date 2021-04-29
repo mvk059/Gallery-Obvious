@@ -7,5 +7,10 @@ import com.mvk.galleryobvious.data.model.ImageData
  */
 interface ImageClickListener {
 
+    /**
+     * Handle click event in [com.mvk.galleryobvious.ui.main.MainActivity]
+     *
+     * @param imageData List of images
+     */
     fun onClick(imageData: ImageData)
 }

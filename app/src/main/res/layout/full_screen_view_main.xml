@@ -10,7 +10,7 @@
     <data>
         <variable
             name="fullVM"
-            type="com.mvk.galleryobvious.ui.main.SharedViewModel" />
+            type="com.mvk.galleryobvious.ui.main.viewmodel.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import com.mvk.galleryobvious.ImageApp
 import com.mvk.galleryobvious.R
 import com.mvk.galleryobvious.databinding.FullScreenViewMainBinding
-import com.mvk.galleryobvious.ui.main.SharedViewModel
+import com.mvk.galleryobvious.ui.main.viewmodel.SharedViewModel
 import com.mvk.galleryobvious.utils.common.Constants
 
 /**
@@ -44,10 +44,10 @@ class FullScreenFragment : Fragment() {
     }
 
     /**
-     * Initializes the required observers
+     * Load the HD image in full screen
      */
     private fun loadImageInFullScreen() {
-        val url = viewModel.imageData.image[viewModel.viewPagerPosition].url
+        val url = viewModel.imageData.image[viewModel.viewPagerPosition].hdurl
         (context?.applicationContext as ImageApp).getGlideService(
             url = url,
             targetIV = binding.fullIV,

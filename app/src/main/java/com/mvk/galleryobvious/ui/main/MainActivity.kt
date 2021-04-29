@@ -12,8 +12,12 @@ import com.mvk.galleryobvious.ui.detail.DetailViewFragment
 import com.mvk.galleryobvious.ui.main.adapter.MainGalleryAdapter
 import com.mvk.galleryobvious.utils.common.Constants
 import com.mvk.galleryobvious.ui.main.utils.ImageClickListener
+import com.mvk.galleryobvious.ui.main.viewmodel.SharedViewModel
 import com.mvk.galleryobvious.utils.common.addFragment
 
+/**
+ * Main Activity to display the list of all images
+ */
 class MainActivity : AppCompatActivity(), ImageClickListener {
     /**
      * Binding with the layout file (activity_main.xml) to access it's elements
@@ -33,6 +37,11 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
         setAdapter()
     }
 
+    /**
+     * Navigate to [DetailViewFragment]
+     *
+     * @param imageData List of images
+     */
     override fun onClick(imageData: ImageData) {
         addFragment(
             fragment = DetailViewFragment(),
