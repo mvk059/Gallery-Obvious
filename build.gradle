@@ -58,4 +58,5 @@ ext {
 
     // Tests
     junit_version = '4.13.2'
+    mockk_version = "1.11.0"
 }
