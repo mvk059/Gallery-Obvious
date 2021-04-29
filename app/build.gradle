@@ -60,10 +60,9 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:$viewpager_version"
 
     // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extension_version"
 
     // Lifecycle Annotations
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extension_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
