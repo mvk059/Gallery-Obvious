@@ -12,6 +12,11 @@ Clone or download the repo
 ### Open and Run Project in Android Studio
 Open the project in Android Studio and click RUN. Simple.
 
+### Features
+ - Implemented Images Grid Screen and Image Detail Screen as mentioned in the assignment. 
+ - Added an extra screen which shows the HD image in full screen.
+ - Added unit test cases for the view model class
+
 ### Libraries
 1. Glide
 2. Viewpager2
