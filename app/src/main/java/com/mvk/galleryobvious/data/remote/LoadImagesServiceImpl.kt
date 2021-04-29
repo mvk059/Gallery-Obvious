@@ -14,7 +14,7 @@ import com.mvk.galleryobvious.ui.main.utils.LoadImagesService
 
 object LoadImagesServiceImpl : LoadImagesService {
 
-    override fun loadImages(url: String, targetIV: ImageView) {
+    override fun loadImages(url: String, targetIV: ImageView, sourceType: Int) {
         Glide.with(targetIV.context)
             .load(url)
             .transform(CenterCrop())

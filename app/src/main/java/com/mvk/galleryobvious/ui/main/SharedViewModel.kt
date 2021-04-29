@@ -9,11 +9,14 @@ import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.data.repository.NetworkRepository
 
 class SharedViewModel() : ViewModel() {
-
+    /**
+     * Position of the view pager of the detail screen
+     */
+    private var viewPagerPosition: Int = 0
     /**
      * Stores the image data read from the JSON file
      */
-    var imageData: Array<Image>? = arrayOf()
+    lateinit var imageData: ImageData
 
     /**
      * Gets the data from the data source
@@ -22,7 +25,16 @@ class SharedViewModel() : ViewModel() {
      */
     fun getData(context: Context): Array<Image>? {
         val dataSource = ImageDataSource(context)
-        imageData = dataSource.getImageData()
-        return imageData
+        return dataSource.getImageData()
+    }
+
+    /**
+     * Pass data from main activity to detail fragment
+     *
+     * @param imageData Array of images
+     */
+    fun passDataToDetailFragment(imageData: ImageData) {
+        this.imageData = imageData
+//        passDataToDetailScreenLD.value = true
     }
 }

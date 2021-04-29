@@ -6,6 +6,6 @@ import com.mvk.galleryobvious.data.remote.LoadImagesServiceImpl
 
 class ImageApp : Application() {
 
-    fun getGlideService(url: String, targetIV: ImageView) =
-        LoadImagesServiceImpl.loadImages(url, targetIV)
+    fun getGlideService(url: String, targetIV: ImageView, sourceType: Int = 0) =
+        LoadImagesServiceImpl.loadImages(url, targetIV, sourceType)
 }

@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(), ImageClickListener {
             fragment = DetailViewFragment(),
             container = android.R.id.content
         )
+        viewModel.passDataToDetailFragment(imageData = imageData)
     }
 
     /**

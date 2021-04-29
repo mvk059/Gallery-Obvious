@@ -8,10 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.mvk.galleryobvious.R
+import com.mvk.galleryobvious.data.model.ImageData
 import com.mvk.galleryobvious.databinding.DetailViewMainBinding
+import com.mvk.galleryobvious.ui.detail.adapter.DetailViewAdapter
+import com.mvk.galleryobvious.ui.detail.utils.FullScreenClickListener
 import com.mvk.galleryobvious.ui.main.SharedViewModel
 
-class DetailViewFragment : Fragment() {
+class DetailViewFragment : Fragment(), FullScreenClickListener {
 
     /**
      * Binding with the layout file (detail_view_main.xml) to access it's elements
@@ -34,5 +37,22 @@ class DetailViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+        initAdapter(viewModel.imageData)
+    }
+
+    override fun onClick(viewPagerPosition: Int) {
+    }
+
+    /**
+     * Setting up the adapter to list the images
+     * Navigating to the position of the selected image
+     */
+    private fun initAdapter(it: ImageData) {
+        binding.detailViewPager.adapter = DetailViewAdapter(
+            it,
+            this
+        )
+        binding.detailViewPager.setCurrentItem(it.position, false)
+
     }
 }
