@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.mvk.galleryobvious.R
 import com.mvk.galleryobvious.databinding.ActivityMainBinding
+import com.mvk.galleryobvious.ui.main.adapter.MainGalleryAdapter
+import com.mvk.galleryobvious.utils.common.Constants
 
 class MainActivity : AppCompatActivity() {
     /**
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initViewModel()
+        setAdapter()
     }
 
     /**
@@ -31,5 +35,18 @@ class MainActivity : AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(SharedViewModel::class.java)
         binding.mainVM = viewModel
+    }
+
+    /**
+     * Setting up the adapter to list the images
+     */
+    private fun setAdapter() {
+        val array = viewModel.getData()
+        val galleryAdapter = MainGalleryAdapter(
+            imageList = array)
+        binding.rvMain.apply {
+            layoutManager = GridLayoutManager(context, Constants.GRID_SIZE)
+            adapter = galleryAdapter
+        }
     }
 }
